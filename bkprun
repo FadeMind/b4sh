@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+BKPDIR="$HOME/20$(date +%y-%m-%d).BKP.DOT"
+DOTDIRS="config gnupg jd kde kde4 kodi lastpass local mnju shutter Skype ssh thunderbird"
+
+bkp_dot() {
+    for d in $DOTDIRS
+    do
+        printf "Compressing $d... \n"
+        cd $HOME && tar cf - ".$d/" | xz -T 0 -7 -zf - > $BKPDIR/$d-20$(date +%y%m%d).tar.xz
+    done
+}
+
+bkp_cachechc() {
+    printf "Compressing google-chrome cache... \n"
+    cd $HOME/.cache && tar cf - google-chrome/ | xz -T 0 -7 -zf - > $BKPDIR/google-chromec-20$(date +%y%m%d).tar.xz
+}
+
+bkp_etc() {
+    cd $BKPDIR
+    mkdir etc-20$(date +%y%m%d);\
+    sudo cp -rf /etc/* etc-20$(date +%y%m%d)/;\
+    printf "Compressing etc... \n"
+    sudo tar cf - etc-20$(date +%y%m%d)/ | xz -T 0 -7 -zf - > etc-20$(date +%y%m%d).tar.xz;\
+    sudo chown 1000:100 etc-20$(date +%y%m%d).tar.xz;sudo rm -rf etc-20$(date +%y%m%d)
+}
+
+if [ "$(whoami)" == "root" ]; then
+    echo "${BD}ERROR: Run this script as normal user!${NM}"
+    exit 0
+else
+    if [ ! -d "$BKPDIR" ]; then
+        cd $HOME
+        mkdir -p "$BKPDIR"
+    fi
+bkp_dot
+bkp_etc
+bkp_cachechc
+fi

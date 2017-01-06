@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+BD=$(tput bold)
+NM=$(tput sgr0) 
+
+if [ ! -d .git ]; then
+    printf "${BD}ERROR: GIT repository was not found in this path.${NM}\n"
+    exit 0
+else
+    if [ -e PKGBUILD ]; then 
+        printf "${BD}Package AUR found. Commit changes.${NM}\n"
+        mksrcinfo
+        git add --all && git commit -am "update" && git push -u origin master
+    else
+        printf "${BD}ERROR: Package AUR not found.${NM}\n"
+        exit 0
+    fi
+fi

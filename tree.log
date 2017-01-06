@@ -1,0 +1,44 @@
+.
+├── 00checksum.sha1.gen.bash
+├── 00hpHosts.update.bash
+├── 00update.bash
+├── acpi_tables_tools
+│   ├── ACPI.EXTRACT.TABLES.LOG.BASH
+│   └── DSDT_EXTR.BASH
+├── anwr
+├── asd-start
+├── asd-stop
+├── aur-commit
+├── bkprun
+├── clang_llvm_svn-dwnld.bash
+├── clean-journal
+├── clean-l10n
+├── clean-langs
+├── clean-pacnew
+├── clean-temp
+├── cleanup.bash
+├── conv
+├── etc-bkp
+├── GEN.SH.archbash
+├── GEN.SH.archpkgbuilds
+├── git-commit
+├── gpg_connecting_dirmngr_at_failed
+├── hup
+├── logstodevnull
+├── manjaro-firefox-kde-dwnld
+├── MENU.packages-git
+├── mimes-lo-p
+├── mimes-make.sh
+├── mnj-git-pull
+├── mnju
+├── modprobed.db.info.bash
+├── plasma-restart
+├── psd-start
+├── psd-stop
+├── README.md
+├── rjs.old.sh
+├── rsj
+├── RSYNC-JOB
+└── tree.log
+
+1 directory, 40 files

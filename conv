@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+files=$(ls -1)
+
+for f in $files
+    do
+        inkscape -z -e $f.png -w 128 -h 128 $f.svg
+done

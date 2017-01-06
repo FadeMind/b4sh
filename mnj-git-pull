@@ -1,0 +1,19 @@
+#!/bin/bash
+export LANG=C
+REPOPATH=$(pwd)
+REPOURL="https://github.com/FadeMind"
+REPONAMES="community core extra multilib"
+if [ ! -d "$REPOPATH" ]; then
+    mkdir -p "$REPOPATH"
+fi
+if [ ! -e "$REPOPATH/.LOCK" ]; then
+    touch "$REPOPATH/.LOCK"
+    cd $REPOPATH
+    for i in $REPONAMES; do
+        git clone "$REPOURL/packages-$i.git"
+    done
+else
+    for i in $REPONAMES; do
+        cd "$REPOPATH/packages-$i" && git pull
+    done
+fi

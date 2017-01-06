@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+#cd /var/cache/pacman/aur && rm -rf *.{gz,zip,bz2,tgz,sig,asc} *[1-9].tar.xz && find * -type d -exec rm -rf '{}' \;
+rm -rf /tmp/makepkg/* /tmp/yaourt-tmp*/* &> /dev/null

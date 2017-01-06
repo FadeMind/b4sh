@@ -1,0 +1,8 @@
+#!/bin/bash
+dirm="$HOME/GITHUB/archbash"
+export LANG=C
+cd $dirm
+rm -f 20*.*
+touch 20$(date +%y%m%d).TREE 20$(date +%y%m%d).DIRS
+tree > 20$(date +%y%m%d).TREE
+ls -lah --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F * > 20$(date +%y%m%d).DIRS

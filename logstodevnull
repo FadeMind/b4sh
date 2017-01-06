@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+FLC="access_log access_log.1 access_log.2 cups-pdf_log error_log page_log page_log.1"
+FLA="clamav.log freshclam.log"
+cd /var/log/cups/;for i in $FLC ; do sudo rm $i ; done; for i in $FLC ; do sudo ln -s /dev/null $i ; done
+cd /var/log/clamav/;for i in $FLA ; do sudo rm $i ; done && for i in $FLA ; do sudo ln -s /dev/null $i ; done
+rm ~/.xsession-errors;ln -s /dev/null ~/.xsession-errors
+rm -rf ~/.kde4/share/apps/RecentDocuments && ln -s /dev/null ~/.kde4/share/apps/RecentDocuments
+rm -rf ~/.local/share/RecentDocuments && ln -s /dev/null ~/.local/share/RecentDocuments
+sudo rm -rf /var/lib/systemd/coredump && sudo ln -s /dev/null /var/lib/systemd/coredump
+sudo mkdir -p /etc/systemd/system/thermald.service.d
+sudo bash -c '{
+echo "[Service]"
+echo "StandardOutput=null"
+} > /etc/systemd/system/thermald.service.d/nostdout.conf'
+# https://www.reddit.com/r/archlinux/comments/3okrhl/thermald_anyone/

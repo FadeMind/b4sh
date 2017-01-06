@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# Copyright (C) 2015 Tomasz Przybył <fademind@gmail.com>
+# Homepage: https://github.com/FadeMind/archbash
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+# 
+# https://www.gnu.org/licenses/gpl.txt
+
+BD=$(tput bold)
+NM=$(tput sgr0) 
+savelist="all_languages|currency|en|en_US|l10n|kde4|pl|kf5_all_languages|locale.alias|rarian.document|C|man[0-8,n]|pl.UTF-8|pl.ISO8859-2"
+dir="/usr/share"
+places="$dir/locale $dir/locale/kde4 $dir/help $dir/man"
+
+status(){
+for d in $places
+    do
+        printf "${BD}PATH: ${NM}$(cd $d && pwd)${NM}\n"
+        printf "${BD}CONTENT:${NM}\n"
+        cd $d && ls
+        printf "${BD}SIZE: ${NM}$(cd $d && du -hs $d|awk '{ print $1 }')${NM}\n"
+        printf "${BD}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=${NM}\n"
+done
+}
+
+cleanup(){
+for d in $places
+    do
+        cd $d && ls | grep -Exv $savelist | sudo xargs rm -rf
+done
+sudo locale-gen &> /dev/null
+printf "${BD}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=${NM}\n"
+printf "${BD}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= A F T E R  C L E A N U P =-=-=-=-=-=-=-=-=-=-=-=-=-=${NM}\n"
+printf "${BD}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=${NM}\n"
+status
+}
+
+
+main(){
+printf "${BD}Customize ${NM}savelist${BD} value before using.${NM}\n"
+printf "${BD}-------------------------------------------------------------------------------------${NM}\n"
+printf "${BD}Whitelist:${NM}\n"
+printf "$savelist \n"
+printf "${BD}-------------------------------------------------------------------------------------${NM}\n"
+printf "${BD}Current content of languages directories:${NM}\n"
+status
+printf "${BD}Type ${NM}Y${BD} if You want delete not needed languages files.${NM}\n"
+printf "${BD}Type any other key to exit.${NM}\n"
+printf "${BD}Answer:${NM}"
+read SEL
+    case "$SEL" in
+        "Y") cleanup;;
+        *) exit 0;;
+    esac
+}
+
+main

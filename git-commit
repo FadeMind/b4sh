@@ -1,0 +1,12 @@
+#!/bin/bash
+
+BD=$(tput bold)
+NM=$(tput sgr0) 
+
+if [ ! -d .git ]; then
+    printf "${BD}ERROR: GIT repository was not found in this path.${NM}\n"
+    exit 0
+else
+    printf "${BD}SUCCESS: GIT repository present in this path.${NM}\n"
+    git add --all && git commit -am "updates 20$(date +%y%m%d)" && git push -u origin master
+fi

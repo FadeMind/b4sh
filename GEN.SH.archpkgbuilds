@@ -1,0 +1,17 @@
+#!/bin/bash
+dirm="$HOME/GITHUB/archpkgbuilds/"
+dirs="aur4-customized aur4-installed aur4-maintained"
+export LANG=C
+files(){
+    rm -f 20*.*
+    touch 20$(date +%y%m%d).TREE 20$(date +%y%m%d).DIRS
+    tree > 20$(date +%y%m%d).TREE
+    ls -lah --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F * > 20$(date +%y%m%d).DIRS
+}
+for i in $dirs
+    do
+        cd $dirm/$i
+        files
+done
+cd $dirm
+files

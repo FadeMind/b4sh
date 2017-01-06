@@ -1,0 +1,11 @@
+#!/bin/bash
+repo=http://mirror.netzspielplatz.de/manjaro/packages/pool/overlay
+ffv=46.0.1-1
+ffl=46.0.1-1
+thv=45.1.0-1
+
+for f in thunderbird-kde-$thv-x86_64 firefox-kde-i18n-pl-$ffl-any firefox-kde-$ffv-x86_64 ; do
+    if [ ! -f "$f.pkg.tar.xz" ];then
+        aria2c $repo/$f.pkg.tar.xz
+    fi
+done

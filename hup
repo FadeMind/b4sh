@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+cd $HOME/.hup/hosts/
+/usr/bin/env python updateHostsFile.py
+tar cf - hosts | xz -T 0 -7 -zf - > "hosts.20$(date +%y%m%d).tar.xz"
+rm $HOME/Dropbox/Dev/hosts.*.tar.xz &> /dev/null
+mv hosts.*.tar.xz $HOME/Dropbox/Dev/ &> /dev/null

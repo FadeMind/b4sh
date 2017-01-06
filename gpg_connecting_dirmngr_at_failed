@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+msg "FIX gpg: connecting dirmngr at /root/.gnupg/S.dirmngr failed:"
+sudo mv /etc/pacman.d/gnupg/ /etc/pacman.d/gnupg.old
+sudo pacman-key --init`
+sudo pacman-key --populate archlinux
+sudo pacman-key --refresh
+sudo mkdir /root/.gnupg/ && sudo touch /root/.gnupg/dirmngr_ldapservers.conf

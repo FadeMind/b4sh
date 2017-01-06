@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo "Starting ASD services"
+sudo systemctl start asd-resync
+sudo systemctl start asd
+asd p

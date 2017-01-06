@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Stopping PSD services"
+systemctl --user stop psd-resync
+systemctl --user stop psd
+psd p

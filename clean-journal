@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo "Clean up journal files"
+sudo systemctl kill --kill-who=main --signal=SIGUSR2 systemd-journald.service && sudo find /var/log/journal/*/* -type f -exec rm -rf {} +

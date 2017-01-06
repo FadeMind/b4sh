@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rsync -r -t -v --progress --delete --ignore-existing -s --stats -h /var/cache/pacman/pkg/ /run/media/tomasz/WDElementsEXT4/PACMAN-ALL.PKG/pkg/ && \
+rsync -r -t -v --progress --delete --ignore-existing -s --stats -h /home/tomasz/dev/BIN/ /run/media/tomasz/WDElementsEXT4/ARCH_CSTM_PKGS/ 

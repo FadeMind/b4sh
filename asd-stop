@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo "Stopping ASD services"
+sudo systemctl stop asd-resync
+sudo systemctl stop asd
+asd p
