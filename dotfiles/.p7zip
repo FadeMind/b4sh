@@ -1,0 +1,16 @@
+[Software]
+[Software/7-Zip]
+[Software/7-Zip/Compression]
+ShowPassword=0
+Level=5
+Archiver=7z
+EncryptHeaders=0
+ArcHistory=
+[Software/7-Zip/Compression/Options]
+[Software/7-Zip/Compression/Options/7z]
+Level=9
+Dictionary=100663296
+Order=64
+BlockSize=32
+NumThreads=8
+Method=LZMA2
