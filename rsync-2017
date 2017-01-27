@@ -1,0 +1,5 @@
+/run/media/$(whoami)/
+
+rsync -r -t -v --progress --ignore-existing -s --stats -h /var/cache/pacman/pkg /run/media/$(whoami)/WD5000BEV-EXT4/pacman/
+
+sudo rsync -r -t -v --progress --ignore-existing -s --stats -h /run/media/$(whoami)/WD5000BEV-EXT4/pacman/pkg/ /var/cache/pacman/pkg/
