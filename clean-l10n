@@ -19,11 +19,11 @@
 BD=$(tput bold)
 NM=$(tput sgr0) 
 savelist="all_languages|currency|en|en_US|l10n|kde4|pl|kf5_all_languages|locale.alias|rarian.document|C|man[0-8,n]|pl.UTF-8"
-PREFIX="/usr/share"
-PATH="$PREFIX/locale $PREFIX/locale/kde4 $PREFIX/man $PREFIX/help"
+dir="/usr/share"
+places="$dir/locale $dir/locale/kde4 $dir/man $dir/help"
 
 status(){
-for d in $PATH
+for d in $places
     do
         printf "${BD}PATH: ${NM}$(cd $d && pwd)${NM}\n"
         printf "${BD}CONTENT:${NM}\n"
@@ -34,7 +34,7 @@ done
 }
 
 cleanup(){
-for d in $PATH
+for d in $places
     do
         cd $d && ls | grep -Exv $savelist | sudo xargs rm -rf
 done
